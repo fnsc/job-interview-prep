@@ -1,0 +1,6 @@
+services:
+  js:
+    build: ./docker
+    volumes:
+      - .:/app
+    command: node
