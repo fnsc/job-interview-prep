@@ -24,14 +24,39 @@ const { test } = require("./helpers");
  * Constraints:
  * - 0 <= s.length <= 5 * 10^4
  * - s consists of English letters, digits, symbols, and spaces
+ *
+ * O(n) solution
  */
-
 function lengthOfLongestSubstring(s) {
+  const window = new Set()
+  let left = 0;
+  let right = 0;
+  let maxLength = 0;
+
+  while (right < s.length) {
+    if (window.has(s[right])) {
+      window.delete(s[left])
+      left++
+      continue
+    }
+
+    window.add(s[right])
+    maxLength = Math.max(window.size, maxLength)
+    right++
+  }
+
+  return maxLength
+}
+
+/**
+ * O(n2) solution
+ */
+function naiveApproach(s) {
   let slicedString = s.charAt(0);
   let max = 0;
   for (let i = 1; i < s.length; i++) {
     if (slicedString.includes(s.charAt(i))) {
-      slicedString = slicedString.slice(slicedString.indexOf(s.charAt(i)) + 1)                                                                                            
+      slicedString = slicedString.slice(slicedString.indexOf(s.charAt(i)) + 1)
     }
     slicedString += s.charAt(i)
 
