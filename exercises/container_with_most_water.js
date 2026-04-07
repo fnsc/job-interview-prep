@@ -4,7 +4,7 @@ const { test } = require("./helpers");
 /**
  * Problem: Container With Most Water
  * Given an integer array height of length n, where each element represents
- * a vertical line at position i with height height[i].
+ * a vertical line at position i with height[i].
  * Find two lines that together with the x-axis form a container that holds the most water.
  * Return the maximum amount of water the container can store.
  *
@@ -27,7 +27,28 @@ const { test } = require("./helpers");
  */
 
 function maxArea(height) {
-  // write here
+  let left = 0;
+  let right = height.length - 1;
+  let max = 0;
+
+  while (left < right) {
+    let innerWidth = right - left
+    let innerHeight = Math.min(height[left], height[right])
+    let total = innerWidth * innerHeight
+
+    if (total > max) {
+      max = total;
+    }
+
+    if (height[left] < height[right]) {
+      left++;
+
+      continue;
+    }
+
+    right--;
+  }
+  return max;
 }
 
 // ----------------------------
