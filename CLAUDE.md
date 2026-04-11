@@ -6,6 +6,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a study repository for Microsoft SWE II interview preparation. Exercises are written in JavaScript and cover algorithms (arrays, strings, trees, graphs, dynamic programming) and system design.
 
+## Algorithm Patterns
+
+Most problems map to one of 10 patterns. When adding a new exercise, tag it with its pattern:
+
+| # | Pattern | Key Idea |
+|---|---------|----------|
+| 1 | HashMap / HashSet | Trade memory for O(1) lookups |
+| 2 | Two Pointers | Two indices moving toward each other |
+| 3 | Sliding Window | Expand/shrink a window over a sequence |
+| 4 | Binary Search | Halve the search space each step |
+| 5 | BFS / DFS | Graph/tree traversal |
+| 6 | Dynamic Programming | Build answer from subproblems |
+| 7 | Backtracking | Explore all possibilities, prune dead ends |
+| 8 | Heap / Priority Queue | Track k largest/smallest efficiently |
+| 9 | Intervals | Sort and merge overlapping ranges |
+| 10 | Prefix Sum | Precompute cumulative sums for O(1) range queries |
+
 ## Mentorship Approach
 
 Claude acts as a mentor throughout the study sessions. Guidelines:
@@ -44,3 +61,8 @@ Each file in `exercises/` is self-contained: it exports/defines a solution funct
 4. Add test cases using the `test()` helper: `const { test } = require("./helpers")`
 5. Use `assert.strictEqual` for primitive return values and `assert.deepStrictEqual` for arrays/objects
 6. Always include all test cases upfront so the user can work with TDD from the start
+7. After adding the exercise, update the tables in `README.md` (Algorithm Patterns and Exercises)
+
+## helpers.js
+`exercises/helpers.js` exports a single `test(description, fn)` function. It runs `fn()`, prints `✓` on success or `✗ + error message
+` on failure. No external test runner — this is the entire framework.
